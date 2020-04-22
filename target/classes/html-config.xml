@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+    <configuration>
+        <!-- report theme -->
+        <!-- standard, dark -->
+        <theme>Dark</theme>
+
+
+        <timeStampFormat>MMMM dd, yyyy hh:mm a '('zzz')'</timeStampFormat>
+
+        <!-- document encoding -->
+        <!-- defaults to UTF-8 -->
+        <encoding>UTF-8</encoding>
+
+        <!-- enable or disable timeline on dashboard -->
+        <enableTimeline>true</enableTimeline>
+
+        <!-- protocol for script and stylesheets -->
+        <!-- defaults to https -->
+        <protocol>https</protocol>
+
+        <!-- title of the document -->
+        <documentTitle>CommitLive Test Result</documentTitle>
+
+        <!-- report name - displayed at top-nav -->
+        <reportName>CommitLive API TestSuite Result</reportName>
+
+        <!-- create a report with all artifacts stored locally -->
+        <enableOfflineMode>true</enableOfflineMode>
+
+        <!-- custom javascript -->
+        <scripts>
+
+
+            <![CDATA[
+                $(document).ready(function() {
+
+                });
+            ]]>
+        </scripts>
+
+        <scripts>
+            function convertUTCDateToLocalDate(date) {
+            var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+
+            var offset = date.getTimezoneOffset() / 60;
+            var hours = date.getHours();
+
+            newDate.setHours(hours - offset);
+
+            return newDate;
+            }
+
+            $(document).ready(function() {
+            var nodeTime = $(".node-time");
+            Array.from(nodeTime).forEach(function(nodeTimeItem) {
+            var t = $(nodeTimeItem).text();
+
+            var IST = convertUTCDateToLocalDate(new Date(t.trim()));
+            $(nodeTimeItem).text(IST);
+            });
+            });
+
+
+        </scripts>
+
+        <!-- custom styles -->
+        <styles>
+            <![CDATA[
+
+            ]]>
+        </styles>
+    </configuration>
+</extentreports>
