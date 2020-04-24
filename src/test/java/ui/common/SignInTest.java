@@ -4,11 +4,11 @@ import main.java.CommonUtil;
 import main.java.ui.page.common.AuthenticationPage;
 import main.java.ui.page.common.HomePage;
 import main.java.ui.page.common.MyAccountPage;
+import main.java.ui.util.UiUtil;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import test.java.BaseUiTest;
-import ui.util.UiUtil;
 
 import java.io.IOException;
 
@@ -47,9 +47,8 @@ public class SignInTest extends BaseUiTest {
         authenticationPage1.textLoginEmail.sendKeys(emailId);
         authenticationPage1.textLoginPassword.sendKeys(prop.getProperty("PASSWORD"));
         authenticationPage1.btnSignIn.click();
+        myAccountPage.isInitialized();
+        myAccountPage.btnLogout.click();
         UiUtil.takeScreenshot(driver);
     }
-
-
-
 }

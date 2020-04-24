@@ -1,4 +1,4 @@
-package ui.util;
+package main.java.ui.util;
 
 import main.java.CommonUtil;
 import org.apache.commons.io.FileUtils;
